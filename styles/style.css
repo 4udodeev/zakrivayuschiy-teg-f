@@ -289,11 +289,11 @@
   filter: grayscale(0.8);
 }
 
-.second-sprint-start-image {
+.third-sprint-start-image {
   filter: saturate(158%);
 }
 
-.second-sprint-finish-image {
+.third-sprint-finish-image {
   filter: sepia(80%);
 }
 
@@ -345,7 +345,7 @@ dialog:open {
 .popup-title {
   display: flex;
   column-gap: 20px;
-  width: clamp(261px, 293px, 293px); 
+  width: clamp(261px, 293px, 293px);
   align-items: center;
 }
 
