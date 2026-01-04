@@ -21,6 +21,7 @@
   font-family: var(--main-font);
   font-weight: var(--main-font-weight);
   background-image: var(--grid-gradient);
+  background-attachment: fixed; 
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -28,11 +29,12 @@
   flex-direction: column;
   align-items: center;
   justify-content: space-between;
+  font-variation-settings: 'wght' 410;
 }
 
 .header {
   width: var(--block-width);
-  height: clamp(327px, calc(327pxx + 43 * (100vw - 375px) / 325), 370px);
+  height: clamp(327px, calc(327px + 43 * (100vw - 375px) / 325), 370px);
   padding-block: clamp(122px, calc(122px + 8 * (100vw - 375px) / 325), 130px);
   border: 2px solid #000;
   background-color: #fff;
@@ -62,6 +64,41 @@
   flex-direction: column;
   row-gap: 50px;
   width: var(--block-width);
+}
+
+.base-button {
+  height: 38px;
+  background-color: var(--button-bg);
+  font-family: var(--accent-font);
+  font-size: 14px;
+  isolation: isolate;
+  position: relative;
+  overflow: hidden;
+  cursor: pointer;
+  transition: box-shadow 0.3s ease;
+}
+
+.base-button:focus-visible {
+  outline: none;
+  box-shadow: 2px 2px 0 black;
+}
+
+.base-button::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: var(--button-accent);
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform var(--transition-duration) var(--transition-timing);
+  z-index: 1;
+}
+
+.base-button:hover::before {
+  transform: scaleX(1);
 }
 
 .card {
@@ -110,7 +147,7 @@
 
 @supports (-webkit-text-stroke: 1px rgb(255, 255, 255, 0.5)) {
   .watermark {
-    -webkit-text-stroke: 1px fff;
+    -webkit-text-stroke: 1px rgb(255, 255, 255, 0.5);
   }
 }
 
@@ -118,6 +155,7 @@
   padding: 4px 10px;
   font-size: 18px;
   font-weight: var(--accent-font-weight);
+  line-height: 22px;
 }
 
 .card__text {
@@ -138,9 +176,9 @@
   width: 169px;
   height: 38px;
   display: flex;
-  gap: 10px;
+  gap: 12px;
   align-self: flex-end;
-  margin-inline-end: 35px;
+  margin-inline-end: 36px;
   margin-block-end: 25px;
   outline: none;
 }
@@ -148,12 +186,11 @@
 .card__icon-button {
   background-color: transparent;
   border: 2px solid transparent;
+  width: 38px;
   height: 38px;
+  padding: 0;
   cursor: pointer;
   transition: border-color 0.3s ease;
-  display: flex;
-  justify-items: center;
-  align-items: center;
 }
 
 .card__icon-button:focus-visible {
@@ -164,8 +201,9 @@
 .like-icon {
   width: 38px;
   height: 38px;
-  display: block;
+  box-sizing: border-box;
   transform-origin: center;
+  margin-inline-start: 3px;
 }
 
 .like-icon .heart {
@@ -239,7 +277,6 @@
   transition: fill 0.3s linear 0.06s;
 }
 
-
 .like-icon.is-liked .heart {
   animation: scale-heart 0.3s ease-in 0.1s 1 normal forwards;
 }
@@ -250,14 +287,6 @@
 
 .card__like-button {
   min-width: 130px;
-  height: 38px;
-  background-color: var(--button-bg);
-  font-family: var(--accent-font);
-  font-size: 14px;
-  isolation: isolate;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
 }
 
 .button__text {
@@ -269,35 +298,35 @@
   z-index: 2;
 }
 
-.zero-sprint-image {
+.brightness {
   filter: brightness(70%);
 }
 
-.first-sprint-start-image {
+.contrast {
   filter: contrast(20%);
 }
 
-.first-sprint-finish-image {
+.blur {
   filter: blur(5px);
 }
 
-.second-sprint-start-image {
+.opacity {
   filter: opacity(0.8);
 }
 
-.second-sprint-finish-image {
+.grayscale {
   filter: grayscale(0.8);
 }
 
-.third-sprint-start-image {
+.saturate {
   filter: saturate(158%);
 }
 
-.third-sprint-finish-image {
+.sepia {
   filter: sepia(80%);
 }
 
-.just-now-image {
+.sepia-contrast-brightness {
   filter: sepia(1) contrast(20) brightness(200%);
 }
 
@@ -309,12 +338,7 @@
   justify-content: center;
   align-items: center;
   gap: 8px;
-  background-color: #fff;
-  border: 2px solid #000;
-  isolation: isolate;
-  position: relative;
-  overflow: hidden;
-  cursor: pointer;
+  margin-block-end: 100px;
 }
 
 .floppy {
@@ -331,75 +355,32 @@ dialog::backdrop {
 }
 
 dialog:open {
-  width: clamp(341px, 353px, 353px);
-  height: 191px;
+  width: clamp(341px, 360px, 360px);
+  padding-inline: 40px;
   display: flex;
   flex-direction: column;
-  gap: 30px;
-  justify-content: center;
+  gap: 20px;
+  justify-items: center;
   align-items: center;
   box-sizing: border-box;
-  padding: 0;
 }
 
 .popup-title {
   display: flex;
-  column-gap: 20px;
-  width: clamp(261px, 293px, 293px);
+  gap: 22px;
+  width: clamp(261px, 261px, 293px);
   align-items: center;
 }
 
 .popup-text {
   font-family: var(--accent-font);
   font-size: 14px;
-  width: 234px;
   text-transform: uppercase;
   line-height: 150%;
 }
 
 .popup-button {
-  width: clamp(261px, 293px, 293px);
-  height: 38px;
-  background-color: #fff;
-  border: 2px solid #000;
-  isolation: isolate;
-  position: relative;
-  overflow: hidden;
-}
-
-.card__like-button,
-.save-button,
-.popup-button {
-  transition: box-shadow 0.3s ease;
-}
-
-.card__like-button:focus,
-.save-button:focus,
-.popup-button:focus {
-  outline: none;
-  box-shadow: 2px 2px 0 black;
-}
-
-.card__like-button::before,
-.save-button::before,
-.popup-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: var(--button-accent);
-  transform: scaleX(0);
-  transform-origin: left;
-  transition: transform var(--transition-duration) var(--transition-timing);
-  z-index: 1;
-}
-
-.card__like-button:hover::before,
-.save-button:hover::before,
-.popup-button:hover::before {
-  transform: scaleX(1);
+  width: clamp(261px, 261px, 293px);
 }
 
 @media (width <= 375px) {
@@ -410,11 +391,12 @@ dialog:open {
   .save-button {
     flex-direction: column;
     width: 306px;
-    height: 84px;
+    height: 88px;
+    gap: 8x;
   }
 
-.floppy {
-    width: 39px;
-    height: 39px;
-  }
+  .floppy {
+  width: 28px;
+  height: 28px;
+}
 }
