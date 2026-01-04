@@ -21,7 +21,7 @@
   font-family: var(--main-font);
   font-weight: var(--main-font-weight);
   background-image: var(--grid-gradient);
-  background-attachment: fixed; 
+  background-attachment: fixed;
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -396,7 +396,7 @@ dialog:open {
   }
 
   .floppy {
-  width: 28px;
-  height: 28px;
-}
+    width: 28px;
+    height: 28px;
+  }
 }
